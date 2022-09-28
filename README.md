@@ -9,6 +9,6 @@ Inspired by https://visualgo.net/en
 - Bubble Sort
 - Quick Sort 
 
-![Unsorted Image] (/images/unsorted.png)
-![Sorted Image] (/images/sorted.png)
+![Unsorted Image] (./images/unsorted.png)
+![Sorted Image] (./images/sorted.png)
 
