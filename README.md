@@ -1,5 +1,5 @@
 # Sorting Visualiser
-Visualisation process on different sorting algorithms
+Visualisation process on different sorting algorithms\
 Inspired by https://visualgo.net/en 
 
 
@@ -8,7 +8,3 @@ Inspired by https://visualgo.net/en
 - Merge Sort 
 - Bubble Sort
 - Quick Sort 
-
-![Unsorted Image] (./images/unsorted.png)
-![Sorted Image] (./images/sorted.png)
-
