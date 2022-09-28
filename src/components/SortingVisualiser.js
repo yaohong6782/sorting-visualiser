@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 // import styles from "./SortingVisualiser.module.css";
 import { bubbleSort } from "./algorithm/BubbleSort";
 import { mergeSortAlgo } from "./algorithm/MergeSort";
-import { insertionSort } from "./algorithm/QuickSort";
+import { getQuickSortAnimations, quickSortAlgo } from "./algorithm/QuickSort";
 
 import "./SortingVisualiser.css";
 const SortingVisualiser = () => {
   const PRI_COLOR = "#408080";
   const SEC_COLOR = "red";
-  const SPEED = 2;
+  const SPEED = 3;
 
 
   const NUM_OF_ARRAY_BARS = 100;
@@ -17,7 +17,7 @@ const SortingVisualiser = () => {
   const resetArray = () => {
     const array = [];
     for (let i = 0; i < NUM_OF_ARRAY_BARS; i++) {
-      array.push(randomIntegersFromRange(5, 600));
+      array.push(randomIntegersFromRange(20, 600));
     }
     setArrayBars(array);
   };
@@ -74,7 +74,7 @@ const SortingVisualiser = () => {
   };
 
   const quickSorting = () => {
-    const animations = quickSorting(arrayBars)
+
   }
 
   return (
@@ -125,3 +125,36 @@ export default SortingVisualiser;
 //                 barTwoStyle.height = temp;
 //             }, i * SPEED)
 //         }
+
+
+/*
+    const animations = getQuickSortAnimations(arrayBars)
+    for (let i = 0; i < animations.length; i++) {
+      const isColorChange =
+        animations[i][0] === "comparison1" ||
+        animations[i][0] === "comparison2";
+      const arrayBars = document.getElementsByClassName("array-bar");
+      if (isColorChange === true) {
+        const color =
+          animations[i][0] === "comparison1"
+            ? SEC_COLOR
+            : PRI_COLOR;
+        const [, barOneIndex, barTwoIndex] = animations[i];
+        const barOneStyle = arrayBars[barOneIndex].style;
+        const barTwoStyle = arrayBars[barTwoIndex].style;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * SPEED);
+      } else {
+        const [, barIndex, newHeight] = animations[i];
+        if (barIndex === -1) {
+          continue;
+        }
+        const barStyle = arrayBars[barIndex].style;
+        setTimeout(() => {
+          barStyle.height = `${newHeight}px`;
+        }, i * SPEED);
+      }
+    }
+*/
