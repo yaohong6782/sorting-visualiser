@@ -1,4 +1,4 @@
-export const quickSort = (array) => {
+export const quickSortAlgo = (array) => {
     let animations = [];
     
     quickSortHelper(array,0, array.length-1, animations);

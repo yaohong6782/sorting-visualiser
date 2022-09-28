@@ -9,3 +9,33 @@
     display: inline-block;
     margin: 0 1px;
 }
+
+.slider-wrapper{
+    display:flex;
+    justify-content: center;
+    padding-top:20px;
+}
+
+#btn {
+    margin-left:5px;
+    background-color: #008CBA; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    
+}
+
