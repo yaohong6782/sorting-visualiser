@@ -1,8 +1,8 @@
-export const quickSortAlgo = (array) => {
+export const quickSort = (array) => {
     let animations = [];
     
-
-
+    quickSortHelper(array,0, array.length-1, animations);
+    
     return animations
 }
 
@@ -16,85 +16,54 @@ const quickSortHelper = (mainArray, startIdx, endIdx, animations) => {
 
     if (startIdx < endIdx){
         pivotIdx = partitionArray(mainArray, startIdx, endIdx, animations);
+        quickSortHelper(mainArray, startIdx, pivotIdx-1, animations);
+        quickSortHelper(mainArray, pivotIdx+1, endIdx, animations);
     }
 }
 
 const partitionArray = (mainArray, startIdx, endIdx, animations) => {
-    let pivotIdx = (startIdx + endIdx) / 2;
+    let pivotIdx = randomIntegersFromRange(startIdx,endIdx);
 
-    animations.push([true, pivotIdx, endIdx]);
-    animations.push([false, pivotIdx, mainArray[endIdx]]);
-    animations.push([false, endIdx, mainArray[pivotIdx]]);
-
+    animations.push([pivotIdx, endIdx, true]);
+    animations.push([pivotIdx, mainArray[endIdx], false]);
+    animations.push([endIdx, mainArray[pivotIdx], false]);
+    animations.push([pivotIdx, endIdx, true]);
     swapPosition(mainArray,startIdx, endIdx);
 
     let curr = startIdx;
 
     // starting the hectic animations 
+    // reference from merge sort 
     for (let i = startIdx; i < endIdx; i++){
-        
+        animations.push([i, endIdx, true]);
+        animations.push([i, endIdx, true])
+
+        if (mainArray[i] <= mainArray[endIdx]){
+            animations.push([i, curr, true]);
+            animations.push([i, mainArray[curr], false]);
+            animations.push([curr, mainArray[i], false]);
+            animations.push([i, curr, true]);
+
+            swapPosition(mainArray, i, curr);
+            curr+=1;
+        }
     }
+    animations.push([curr, endIdx, true]);
+    animations.push([endIdx, mainArray[curr], false]);
+    animations.push([curr, mainArray[endIdx], false]);
+    animations.push([curr, curr, true]);
+
+    swapPosition(mainArray, curr, endIdx);
+    return curr;
+
 }
+const randomIntegersFromRange = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
 
 const swapPosition = (mainArray, startIdx, endIdx) => {
     let temp = mainArray[startIdx]
     mainArray[startIdx] = mainArray[endIdx];
     mainArray[endIdx] = temp;
 }
-// export function getQuickSortAnimations(array) {
-//     let animations = [];
-//     let helperArray = array.slice();
-//     doQuickSort(helperArray, 0, helperArray.length - 1, animations);
-//     array = helperArray;
-//     return animations;
-//   }
-//   const randomIntegersFromRange = (min, max) => {
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-//   };
-//   function doQuickSort(helperArray, startIdx, endIdx, animations) {
-//     let pivotIdx;
-//     if (startIdx === endIdx) return;
-//     if (startIdx < endIdx) {
-//       pivotIdx = partitionArray(helperArray, startIdx, endIdx, animations);
-//       doQuickSort(helperArray, startIdx, pivotIdx - 1, animations);
-//       doQuickSort(helperArray, pivotIdx + 1, endIdx, animations);
-//     }
-//   }
-  
-//   function partitionArray(helperArray, startIdx, endIdx, animations) {
-//     let pivotIdx = randomIntegersFromRange(startIdx, endIdx); // get a random index in array for pivot
-  
-//     animations.push(["comparison1", pivotIdx, endIdx]);
-//     animations.push(["swap", pivotIdx, helperArray[endIdx]]);
-//     animations.push(["swap", endIdx, helperArray[pivotIdx]]);
-//     animations.push(["comparison2", pivotIdx, endIdx]);
-//     swapEleInArray(helperArray, pivotIdx, endIdx);
-  
-//     let lti = startIdx;
-  
-//     for (let i = startIdx; i < endIdx; ++i) {
-//       animations.push(["comparison1", i, endIdx]);
-//       animations.push(["comparison2", i, endIdx]);
-//       if (helperArray[i] <= helperArray[endIdx]) {
-//         animations.push(["comparison1", i, lti]);
-//         animations.push(["swap", i, helperArray[lti]]);
-//         animations.push(["swap", lti, helperArray[i]]);
-//         animations.push(["comparison2", i, lti]);
-//         swapEleInArray(helperArray, i, lti);
-//         lti++;
-//       }
-//     }
-//     animations.push(["comparison1", lti, endIdx]);
-//     animations.push(["swap", endIdx, helperArray[lti]]);
-//     animations.push(["swap", lti, helperArray[endIdx]]);
-//     animations.push(["comparison2", lti, endIdx]);
-  
-//     swapEleInArray(helperArray, lti, endIdx);
-//     return lti;
-//   }
-  
-//   function swapEleInArray(helperArray, firstIdx, secondIdx) {
-//     let temp = helperArray[firstIdx];
-//     helperArray[firstIdx] = helperArray[secondIdx];
-//     helperArray[secondIdx] = temp;
-//   }
