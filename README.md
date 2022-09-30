@@ -1,5 +1,5 @@
 # Sorting Visualiser
-Try it here https://velvety-cucurucho-738ffc.netlify.app/
+Demo https://sorting-visualiser-738ffc.netlify.app/
 
 Visualisation process on different sorting algorithms\
 Inspired by https://visualgo.net/en
