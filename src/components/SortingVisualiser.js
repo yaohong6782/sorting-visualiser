@@ -12,6 +12,7 @@ const SortingVisualiser = () => {
 
   const [numOfBars, setNumOfBars] = useState(40);
   const [arrayBars, setArrayBars] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const NUM_OF_ARRAY_BARS = numOfBars;
   const resetArray = () => {
@@ -29,6 +30,7 @@ const SortingVisualiser = () => {
   const mergeSorting = () => {
     const animations = mergeSortAlgo(arrayBars);
     for (let i = 0; i < animations.length; i++) {
+      setIsDisabled(true);
       const arrayBars = document.getElementsByClassName("array-bar");
       const isColorChange = i % 3 !== 2;
       if (isColorChange) {
@@ -48,11 +50,12 @@ const SortingVisualiser = () => {
         }, i * SPEED);
       }
     }
+    setIsDisabled(false);
   };
   const bubbleSorting = () => {
     const animations = bubbleSort(arrayBars);
     for (let i = 0; i < animations.length; i++) {
-      document.getElementById("btn").disabled = true;
+      setIsDisabled(true);
       const arrayBars = document.getElementsByClassName("array-bar");
       const isColorChange = animations[i][2];
       if (isColorChange) {
@@ -72,12 +75,12 @@ const SortingVisualiser = () => {
         }, i * SPEED);
       }
     }
-    document.getElementById("btn").disabled = false;
+    
   };
 
   const quickSorting = () => {
     const animations = quickSortAlgo(arrayBars);
-    console.log(animations);
+    setIsDisabled(true);
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = animations[i][2];
       const arrayBars = document.getElementsByClassName("array-bar");
@@ -100,6 +103,7 @@ const SortingVisualiser = () => {
         }, i * SPEED);
       }
     }
+    setIsDisabled(false);
   };
 
   return (
@@ -112,22 +116,22 @@ const SortingVisualiser = () => {
             style={{ background: PRI_COLOR, height: `${value}px` }}
           ></div>
         ))}
-            
+
         <br></br>
 
-        <button id="btn" onClick={resetArray}>
+        <button className="btn" disabled={isDisabled} onClick={resetArray}>
           {" "}
           Generate Array{" "}
         </button>
-        <button id="btn" onClick={bubbleSorting}>
+        <button className="btn" disabled={isDisabled} onClick={bubbleSorting}>
           {" "}
           Bubble Sort{" "}
         </button>
-        <button id="btn" onClick={mergeSorting}>
+        <button className="btn" disabled={isDisabled} onClick={mergeSorting}>
           {" "}
           Merge Sort{" "}
         </button>
-        <button id="btn" onClick={quickSorting}>
+        <button className="btn" disabled={isDisabled} onClick={quickSorting}>
           Quick Sort
         </button>
         <br></br>
