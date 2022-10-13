@@ -30,7 +30,7 @@ const SortingVisualiser = () => {
   const mergeSorting = () => {
     const animations = mergeSortAlgo(arrayBars);
     for (let i = 0; i < animations.length; i++) {
-      setIsDisabled(true);
+
       const arrayBars = document.getElementsByClassName("array-bar");
       const isColorChange = i % 3 !== 2;
       if (isColorChange) {
@@ -50,12 +50,12 @@ const SortingVisualiser = () => {
         }, i * SPEED);
       }
     }
-    setIsDisabled(false);
+
   };
   const bubbleSorting = () => {
     const animations = bubbleSort(arrayBars);
     for (let i = 0; i < animations.length; i++) {
-      setIsDisabled(true);
+
       const arrayBars = document.getElementsByClassName("array-bar");
       const isColorChange = animations[i][2];
       if (isColorChange) {
@@ -80,7 +80,7 @@ const SortingVisualiser = () => {
 
   const quickSorting = () => {
     const animations = quickSortAlgo(arrayBars);
-    setIsDisabled(true);
+
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = animations[i][2];
       const arrayBars = document.getElementsByClassName("array-bar");
@@ -103,7 +103,7 @@ const SortingVisualiser = () => {
         }, i * SPEED);
       }
     }
-    setIsDisabled(false);
+
   };
 
   return (
